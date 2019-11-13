@@ -1,6 +1,8 @@
 defmodule RecordCache do
+  alias RecordCache.CacheKey
+
   def cache_key(record) do
-    IO.inspect(record)
+    CacheKey.call(record)
   end
 
   def with_version(record) do
