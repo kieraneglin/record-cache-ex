@@ -14,7 +14,11 @@ defmodule RecordCache.CacheKey do
   Unlike ActiveRecord, this method will never include a cache version.
   For that, use RecordCache.cache_key_with_version/1
   """
-  def call(record) do
+  def call(%{__meta__: %{source: source, state: :built}}) do
+    "#{source}/new"
+  end
 
+  def call(%{id: id, __meta__: %{source: source, state: :loaded}}) do
+    "#{source}/#{id}"
   end
 end

@@ -8,13 +8,12 @@ defmodule RecordCacheTest.CacheKeyTest do
 
   describe "call/1" do
     test "Model names are inferred by ecto table name" do
-      record =
-        %User{
-          __meta__: %{
-            state: :built,
-            source: "admin_users"
-          }
+      record = %User{
+        __meta__: %{
+          state: :built,
+          source: "admin_users"
         }
+      }
 
       cache_key = CacheKey.call(record)
 
@@ -22,13 +21,12 @@ defmodule RecordCacheTest.CacheKeyTest do
     end
 
     test "Non-persisted records are appended with /new" do
-      new_record =
-        %User{
-          __meta__: %{
-            state: :built,
-            source: "users"
-          }
+      new_record = %User{
+        __meta__: %{
+          state: :built,
+          source: "users"
         }
+      }
 
       cache_key = CacheKey.call(new_record)
 
@@ -36,14 +34,13 @@ defmodule RecordCacheTest.CacheKeyTest do
     end
 
     test "Persisted records are appended with their ID" do
-      persisted_record =
-        %User{
-          id: 1,
-          __meta__: %{
-            state: :loaded,
-            source: "users"
-          }
+      persisted_record = %User{
+        id: 1,
+        __meta__: %{
+          state: :loaded,
+          source: "users"
         }
+      }
 
       cache_key = CacheKey.call(persisted_record)
 
