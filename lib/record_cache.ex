@@ -5,7 +5,7 @@ defmodule RecordCache do
     CacheKey.call(record)
   end
 
-  def with_version(record) do
+  def cache_version(record) do
     IO.inspect(record)
   end
 

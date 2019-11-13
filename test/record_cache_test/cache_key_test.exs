@@ -3,7 +3,7 @@ defmodule RecordCacheTest.CacheKeyTest do
   alias RecordCache.CacheKey
 
   defmodule User do
-    defstruct [:id, :updated_at, :__meta__]
+    defstruct [:id, :__meta__]
   end
 
   describe "call/1" do
