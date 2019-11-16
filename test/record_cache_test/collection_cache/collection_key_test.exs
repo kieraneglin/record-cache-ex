@@ -17,5 +17,15 @@ defmodule RecordCacheTest.CollectionCache.CollectionKeyTest do
         assert Enum.count(keys, &(&1 == key)) == 1
       end)
     end
+
+    test "The same data generates the same cache key" do
+      list_1 = [1, 2, %{test: true}]
+      list_2 = [1, 2, %{test: true}]
+
+      key_1 = CollectionKey.call(list_1)
+      key_2 = CollectionKey.call(list_2)
+
+      assert key_1 == key_2
+    end
   end
 end
